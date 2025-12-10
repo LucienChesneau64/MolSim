@@ -1,0 +1,15 @@
+TopologyLoader:
+	- prendre sous format PDB?
+	- tout parse dans topology
+modulariser + les forces...
+en classe qui hérite de ForceCalculator:
+coder fonctions utilitaires:
+	isNotBonded
+	isNotTrio
+	isNotQuadro -> 
+		meme algo que EF avec le graphe,
+		calculer la liste des nonQUADRO/BONDED/TRIO au préalable
+		comme ca pas a le refaire a chaque itération
+
+
+		
