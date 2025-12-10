@@ -92,38 +92,7 @@ double LennardJones::computeEnergy(const System& system) const {
             total_potential_energy += E_pair;
         }
     }
-
-    // 2. Correction de Coupure (Tail Correction)
-    // Cette correction est nécessaire pour compenser l'énergie potentielle perdue
-    // au-delà du rayon de coupure R_c.
-    
-    // NOTE: Pour simplifier, nous utilisons ici un modèle générique qui suppose
-    // que tous les epsilons et sigmas sont similaires (approchés par la moyenne).
-    // Une implémentation plus rigoureuse nécessiterait de sommer les corrections
-    // par type d'interaction.
-
-    // Calcul des moyennes (Approximation pour la correction de queue)
-    //double avg_epsilon = 0.0; 
-    //double avg_sigma_6 = 0.0;
-    
-    // (A implémenter: Calculer les moyennes ou utiliser les valeurs par défaut du système)
-    // Pour l'exemple, supposons que nous utilisons des valeurs moyennes :
-    // avg_epsilon = system.getAverageEpsilon();
-    // avg_sigma = system.getAverageSigma();
-    
-    //double R_c = std::sqrt(CutoffSquared);
-    //double R_c_inv_3 = 1.0 / (R_c * R_c * R_c);
-    //double R_c_inv_9 = R_c_inv_3 * R_c_inv_3 * R_c_inv_3;
-    
-    // Formule simplifiée de correction de queue (pour le potentiel):
-    // E_tail = N^2 * (8 * PI / 9) * rho^2 * epsilon * [ (sigma/R_c)⁹ - 3 * (sigma/R_c)³ ]
-    // Le terme suivant est une version souvent utilisée, incluant la densité.
-    
-    // Supposons une correction de queue déjà précalculée pour simplifier
-    //double correction_factor = 0.0; // À implémenter avec les paramètres réels.
-    
-    // total_potential_energy += correction_factor * Constants::AVOGADRO_SCALING_FACTOR;
-    
+   
     return total_potential_energy*10;
 
 }

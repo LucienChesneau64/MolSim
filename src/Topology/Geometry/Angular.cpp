@@ -1,6 +1,5 @@
 #include "Topology/Geometry/Angular.hpp"
 
-// Implémentation du Constructeur
 Angular::Angular(std::array<int, 3> Triplet_in, double K_angle_In, double Theta0_In)
     : Triplet(Triplet_in), K_angle(K_angle_In), Theta0(Theta0_In) 
 {

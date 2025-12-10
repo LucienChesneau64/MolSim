@@ -63,20 +63,14 @@ double HarmonicBond::computeEnergy(const System& system) const {
         Vector3D r_ij = position_i - position_j;
         double r_sq = r_ij.squaredNorm();
         
-        // Vérification de la singularité (même si peu probable pour une liaison)
         if (r_sq < 1e-10) continue; 
         double r = std::sqrt(r_sq);
 
-        // Différence par rapport à la distance d'équilibre
         double delta_r = r - bond.getr0();
         
         // Calcul de l'énergie potentielle E = 0.5 * K_b * (r - r0)^2
         double E_bond = 0.5 * bond.getK_bond() * delta_r * delta_r;
         
-        // Mettre à l'échelle si la constante K_b est donnée par kJ/mol/nm^2
-        // et que l'on veut l'énergie par atome
-        E_bond *= Constants::AVOGADRO_SCALING_FACTOR; 
-
         total_potential_energy += E_bond;
     }
     return total_potential_energy;

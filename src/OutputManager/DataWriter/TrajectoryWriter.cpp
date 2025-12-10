@@ -22,7 +22,6 @@ TrajectoryWriter::~TrajectoryWriter() {
 // ---------------------------------------------------
 
 void TrajectoryWriter::initializeFile() {
-    // Le mode std::ios::out | std::ios::trunc garantit un nouveau fichier
     fileStream_.open(filename_, std::ios::out | std::ios::trunc);
     if (!fileStream_.is_open()) {
         std::cerr << "ERREUR: Impossible d'ouvrir le fichier de trajectoire XYZ." << std::endl;
@@ -58,13 +57,11 @@ void TrajectoryWriter::writeXYZFrame(double current_time) {
     fileStream_ << "Frame at time = " << std::fixed << std::setprecision(3) << current_time << " ps\n";
     
     // 3. N Lignes de coordonnées (Nom Atome, X, Y, Z)
-    fileStream_ << std::fixed << std::setprecision(8); // Définir la précision des coordonnées
+    fileStream_ << std::fixed << std::setprecision(8);
     
     for (const auto& atom : particles) {
         const auto& pos = atom.getPosition();
         
-        // Nom de l'atome (utilisez un nom générique si vous n'avez pas de type atomique)
-        // Note: Assurez-vous que atom.getType() renvoie bien une chaîne de caractères
         std::string atom_name = atom.getType(); 
         
         fileStream_ << std::left << std::setw(4) << atom_name 
@@ -73,5 +70,4 @@ void TrajectoryWriter::writeXYZFrame(double current_time) {
                     << std::setw(15) << pos[2] 
                     << "\n"; 
     }
-    // NE PAS OUBLIER le \n à la fin de la dernière ligne, sinon MDAnalysis ne lira qu'une seule frame!
 }
